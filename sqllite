@@ -1,0 +1,99 @@
+from tkinter import *
+import sqlite3
+top = Tk()
+top.geometry("650x500")
+conn = sqlite3.connect('BANK.db') #Create Database Bank
+print("Opened database successfully")
+c=conn.cursor()
+c.execute("""CREATE TABLE IF NOT EXISTS BANK( NAME TEXT, AGE TEXT, ADDRESS TEXT, GENDER TEXT,MOBILE TEXT )""")
+print("Table Created successfully")
+conn.commit()
+conn.close()
+
+def insert():
+          s1=e1.get()
+          s2=e2.get()
+          s3=e3.get()
+          s4=e4.get()
+          s5=e5.get()
+          print(s1,s2,s3,s4,s5)    
+          conn = sqlite3.connect('BANK.db') #Create Database Bank
+          print("Opened database successfully")
+          c=conn.cursor()
+          sql='''INSERT INTO BANK (NAME,AGE,ADDRESS,GENDER,MOBILE) VALUES (?,?,?,?,?)'''
+          val=(s1,s2,s3,s4,s5)
+          c.execute(sql, val)
+          conn.commit()
+          l12=Label(top,text="Record Inserted Successfully")
+          l12.place(x = 100,y = 270)
+          print("Records Inserted successfully with values ",(s1,s2,s3,s4,s5))
+          conn.close()
+
+def view():
+          conn = sqlite3.connect('BANK.db') #Create Database Bank
+          c=conn.cursor()
+          c.execute("""SELECT * FROM BANK""")
+          s=c.fetchall()
+          s1=str(s)
+          print("Records in Database are",s)
+          l6=Label(top, text=("Records in Database are"))
+          l6.place(x=10,y=290)
+          T = Text(top, height=10, width=80)
+          T.place(x=140,y=310)
+          T.insert(INSERT,s1)
+          conn.commit()
+          conn.close()
+
+def delete():
+          conn = sqlite3.connect('BANK.db') #Create Database Bank
+          c=conn.cursor()
+          n1=e6.get()
+          print(n1)
+          sql = 'DELETE FROM BANK WHERE NAME=?'
+          c.execute(sql, (n1,))
+          print("Records Deleted Successfully with Name =", n1)
+          l9=Label(top,text="Record Deleted Successfully")
+          l9.place(x = 330,y = 140)
+          conn.commit()
+          
+l10=Label(top,text="DATABASE CONNECTIVITY USING TKINTER", font=("Helvetica", 22), fg="blue", bg="orange")
+l10.place(x = 20,y = 20)
+
+l1=Label(top,text="First Name",font='Helvetica 9 bold')
+l1.place(x = 60,y = 80)
+l7=Label(top,text="Name",font='Helvetica 9 bold')
+l7.place(x = 320,y = 80)
+e6=Entry(top)
+e6.place(x = 360,y = 80)
+e1=Entry(top)
+
+e1.place(x = 160,y = 80)
+l2=Label(top,text="Age",font='Helvetica 9 bold')
+l2.place(x = 60,y = 110)
+e2=Entry(top)
+e2.place(x = 160,y = 110)
+l3=Label(top,text="Address",font='Helvetica 9 bold')
+l3.place(x = 60,y = 150)
+e3=Entry(top)
+e3.place(x = 160,y = 150)
+
+l4=Label(top,text="Gender",font='Helvetica 9 bold')
+l4.place(x = 60,y = 180)
+e4=Entry(top)
+e4.place(x = 160,y = 180)
+
+l5=Label(top,text="Mobile",font='Helvetica 9 bold')
+l5.place(x = 60,y = 210)
+e5=Entry(top)
+e5.place(x = 160,y = 210)
+
+B1 = Button(top, text = "INSERT", font='Helvetica 9 bold', command=insert)
+B1.place(x = 100,y = 240)
+
+B2 = Button(top, text = "VIEW", font='Helvetica 9 bold', command=view)
+B2.place(x = 180,y = 240)
+
+B3 = Button(top, text = "DELETE", font='Helvetica 9 bold', command=delete)
+B3.place(x = 370,y = 110)
+
+top.mainloop()

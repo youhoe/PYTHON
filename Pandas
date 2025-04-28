@@ -1,0 +1,26 @@
+import pandas as pd
+ds ={
+    'id':[11,12,13,14,15,16,17,18,19],
+    'name':["Pratham","Saniya","Charmy","Roshni","Ashton","Shreya","Kabir","Naitik","Athrva"],
+    'Age':[50,65,34,67,85,34,67,35,47]
+    
+    }
+print(ds)
+df =pd.DataFrame(ds)
+#print(df)
+#print(df.head)
+#print(df.shape)
+#print(df.size)
+#print(df.dtype)
+#print(df.index)
+#print(df.values)
+#print(df['Age'])
+#print(df[["name","Age"]])
+#print(df.loc[[0,2,4]])
+#df['grade']=['A','B','A','C','B','A','D','C','A',]
+#print(df)
+#df.insert(2,"class",["A","B","C","D","E","F","G","H","I"])
+#print(df)
+df[df['Age']>34]
+print(df)
+

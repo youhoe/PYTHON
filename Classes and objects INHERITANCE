@@ -1,0 +1,82 @@
+class Student:
+def _inti_(self,name,area,shape):
+self.name=name
+self.area=area
+def myfunc(self):
+print("Area of "+ self.shape)
+p1 = shape("Square",20)
+p1.myfunc()
+
+
+'''
+#Single Inheritance
+class A:
+def __init__(self,name,age):
+self.name=name
+self.age=age
+def myfunc(self):
+print("Hello my name is " + self.name)
+p1=A ("Pratham" ,20)
+p1.myfunc()
+def __init__(self):
+pass
+class B(A):
+def myfunc1(self):
+print(self.name)
+print(self.age)
+B1=B("Pratham",20)
+B1.myfunc1()
+
+#Multilevel Inheritance
+class A:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def myfunc(self):
+        print("Hello, my name is " + self.name)
+
+class B(A):   # B inherits from A
+    def myfunc1(self):
+        print("Name:", self.name)
+        print("Age:", self.age)
+
+class C(B):   # C inherits from B
+    def myfunc2(self):
+        print("Accessing from C:")
+        self.myfunc()
+        self.myfunc1()
+
+# Test
+obj = C("Pratham", 20)
+obj.myfunc2()
+
+
+
+#Multiple Inheritance
+class A:
+    def __init__(self, name):
+        self.name = name
+
+    def myfunc(self):
+        print("Hello, my name is " + self.name)
+
+class B:
+    def __init__(self, age):
+        self.age = age
+
+    def myfunc1(self):
+        print("I am", self.age, "years old.")
+
+class C(A, B):  # C inherits from A and B
+    def __init__(self, name, age):
+        A.__init__(self, name)
+        B.__init__(self, age)
+
+    def display(self):
+        self.myfunc()
+        self.myfunc1()
+
+# Test
+obj = C("Pratham", 20)
+obj.display()

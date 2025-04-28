@@ -19,81 +19,94 @@ obj.myfunc()
 
 #Method overloading
 class Student:
-def __init__(self, name):
-self.name = name
-self.subjects = []
-self.marks = []
-def input_marks(self, *subjects_and_marks):
-self.subjects = []
-self.marks = []
-print(f"Enter marks for the subjects:")
-for subject, mark in subjects_and_marks:
-self.subjects.append(subject)
-self.marks.append(mark)
-def display_info(self):
-print(f"\nStudent Name: {self.name}")
-for i in range(len(self.subjects)):
-print(f"{self.subjects[i]}: {self.marks[i]}")
+    def __init__(self, name):
+        self.name = name
+        self.subjects = []
+        self.marks = []
+    
+    def input_marks(self, *subjects_and_marks):
+        self.subjects = []
+        self.marks = []
+        print(f"Enter marks for the subjects:")
+        
+        for subject, mark in subjects_and_marks:
+            self.subjects.append(subject)
+            self.marks.append(mark)
+    
+    def display_info(self):
+        print(f"\nStudent Name: {self.name}")
+        for i in range(len(self.subjects)):
+            print(f"{self.subjects[i]}: {self.marks[i]}")
+
 name = input("Enter the student's name: ")
+
 subjects_and_marks = []
 num_subjects = int(input("Enter the number of subjects: "))
 for i in range(num_subjects):
-subject = input(f"Enter name of subject {i + 1}: ")
-mark = float(input(f"Enter marks for {subject}: "))
-subjects_and_marks.append((subject, mark))
+    subject = input(f"Enter name of subject {i + 1}: ")
+    mark = float(input(f"Enter marks for {subject}: "))
+    subjects_and_marks.append((subject, mark))
+
 student = Student(name)
 student.input_marks(*subjects_and_marks)
 student.display_info()
 
-
 #operator
 class Calculator:
-def __init__(self, value):
-self.value = value
-# Overloading the '+' operator
-def __add__(self, other):
-return Calculator(self.value + other.value)
-# Overloading the '-' operator
-def __sub__(self, other):
-return Calculator(self.value - other.value)
-# Overloading the '*' operator
-def __mul__(self, other):
-return Calculator(self.value * other.value)
-# Overloading the '/' operator
-def __truediv__(self, other):
-if other.value != 0:
-return Calculator(self.value / other.value)
-else:
-return "Error: Division by zero!"
-def __str__(self):
-return str(self.value)
+    def __init__(self, value):
+        self.value = value
 
+    # Overloading the '+' operator
+    def __add__(self, other):
+        return Calculator(self.value + other.value)
 
+    # Overloading the '-' operator
+    def __sub__(self, other):
+        return Calculator(self.value - other.value)
+
+    # Overloading the '*' operator
+    def __mul__(self, other):
+        return Calculator(self.value * other.value)
+
+    # Overloading the '/' operator
+    def __truediv__(self, other):
+        if other.value != 0:
+            return Calculator(self.value / other.value)
+        else:
+            return "Error: Division by zero!"
+
+    def __str__(self):
+        return str(self.value)
 
 
 # Menu-driven implementation
 while True:
-print("\n===== Operator Overloading Menu =====")
-print("1. Addition (+)")
-print("2. Subtraction (-)")
-print("3. Multiplication (*)")
-print("4. Division (/)")
-print("5. Exit")
-choice = int(input("Enter your choice (1-5): "))
-if choice == 5:
-print("Exiting Program...")
-break
-num1 = Calculator(float(input("Enter first number: ")))
-num2 = Calculator(float(input("Enter second number: ")))
-if choice == 1:
-result = num1 + num2
-elif choice == 2:
-result = num1 - num2
-elif choice == 3:
-result = num1 * num2
-elif choice == 4:
-result = num1 / num2
-else:
-print("Invalid Choice! Please try again.")
-continue
-print("Result:", result)
+    print("\n===== Operator Overloading Menu =====")
+    print("1. Addition (+)")
+    print("2. Subtraction (-)")
+    print("3. Multiplication (*)")
+    print("4. Division (/)")
+    print("5. Exit")
+
+    choice = int(input("Enter your choice (1-5): "))
+
+    if choice == 5:
+        print("Exiting Program...")
+        break
+
+    num1 = Calculator(float(input("Enter first number: ")))
+    num2 = Calculator(float(input("Enter second number: ")))
+
+    if choice == 1:
+        result = num1 + num2
+    elif choice == 2:
+        result = num1 - num2
+    elif choice == 3:
+        result = num1 * num2
+    elif choice == 4:
+        result = num1 / num2
+    else:
+        print("Invalid Choice! Please try again.")
+        continue
+
+    print("Result:", result)

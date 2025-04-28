@@ -1,0 +1,121 @@
+#LINE GRAPH
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Define the points
+xpoints = np.array([0, 9])
+ypoints = np.array([0, 300])
+
+x1 = np.array([0, 2, 4, 6])
+y1 = np.array([3, 6, 8, 9])
+
+x2 = np.array([0, 2, 4, 6])
+y2 = np.array([4, 2, 6, 3])
+
+# Plot the first line
+plt.plot(xpoints, ypoints, linestyle='dotted', linewidth=2, marker='o', ms=20, mec='g', mfc='blue', color="pink")
+
+# Define font styles
+fontX = {'family': 'serif', 'color': 'green', 'size': 20}
+fontY = {'family': 'serif', 'color': 'blue', 'size': 20}
+
+# Apply labels with fonts
+plt.xlabel("X axis", fontdict=fontX)
+plt.ylabel("Y axis", fontdict=fontY)
+
+# Plot the two more lines
+plt.plot(x1, y1, label='Line 1')
+plt.plot(x2, y2, label='Line 2')
+
+# Add a grid
+plt.grid()
+
+# Show legends
+plt.legend()
+
+# Show the plot
+plt.show()
+
+
+
+
+#6 side by side
+import matplotlib.pyplot as plt
+import numpy as np
+x=np.array([0,2,4,6])
+y=np.array([3,6,8,9])
+plt.subplot(2,3,1)
+plt.plot(x,y)
+plt.title("SAles")
+
+x=np.array([0,2,4,6])
+y=np.array([3,6,8,9])
+plt.subplot(2,3,2)
+plt.plot(x,y)
+plt.title("SAles")
+
+x=np.array([0,2,4,6])
+y=np.array([3,6,8,9])
+plt.subplot(2,3,3)
+plt.plot(x,y)
+plt.title("SAles")
+
+
+x=np.array([0,2,4,6])
+y=np.array([3,6,8,9])
+plt.subplot(2,3,4)
+plt.plot(x,y)
+plt.title("SAles")
+
+
+x=np.array([0,2,4,6])
+y=np.array([3,6,8,9])
+plt.subplot(2,3,5)
+plt.plot(x,y)
+plt.title("SAles")
+
+x=np.array([0,2,4,6])
+y=np.array([3,6,8,9])
+plt.subplot(2,3,6)
+plt.plot(x,y)
+plt.title("SAles")
+plt.suptitle("Title")
+plt.show()
+
+
+
+#BAR
+import matplotlib.pyplot as plt
+import numpy as np
+x=np.array(["A","B","C","D"])
+y=np.array([3,8,1,10])
+plt.barh(x, y,color="pink", height=0.2)
+plt.show()
+
+#Histrogram
+import matplotlib.pyplot as plt
+import numpy as np
+x=np.random.normal(170,10,250)
+plt.hist(x)
+plt.show()
+
+#PIE
+import matplotlib.pyplot as plt
+import numpy as np
+y=np.random.normal([35,25,25,15])
+mylabels=["Apple","Banana","Cherry","Kiwi"]
+plt.pie(y, labels=mylabels, startangle=-90)
+plt.show()
+
+
+#PIE
+import matplotlib.pyplot as plt
+import numpy as np
+y=np.random.normal([35,25,25,15])
+mylabels=["Apple","Banana","Cherry","Kiwi"]
+myexplode=[0.1,0.1,0.1,0.1]
+mycolors=["pink","lightblue","red","green"]
+
+plt.pie(y, labels=mylabels, startangle=-90, explode=myexplode, shadow=True,colors=mycolors)
+plt.legend()
+plt.show()

@@ -1,0 +1,78 @@
+import numpy as np
+rows=int(input("no of rows"))
+columns=int(input("no of columns"))
+arr=np.empty((rows,columns),dtype=int)
+for i in range(rows):
+for j in range(columns):
+arr[i,j]=int(input("enter elements:"))
+print("array is:")
+print(arr)
+print(arr.dtype)
+print(arr.size)
+print(arr.shape)
+print(arr.ndim)
+print(arr.itemsize)
+print(arr[:3])
+print(arr[-3:])
+print(arr[1:4:2])
+
+
+
+a=10
+b=9
+c="Hello world"
+print("value of a=",a)
+print("value of b=",b)
+print("/nArithmatic operator")
+print("Add a+b=",a+b)
+print("Sub a-b=",a-b)
+print("Multi a*b=",a*b)
+print("Div a/b=",a/b)
+print("")
+
+
+
+import numpy as np
+rows = int(input("Enter number of rows: "))
+columns = int(input("Enter number of columns: "))
+arr = np.empty((rows, columns), dtype=int)
+for i in range(rows):
+for j in range(columns):
+arr[i, j] = int(input(f"Enter element at position ({i}, {j}): "))
+
+
+
+
+
+#array_operations_and_manipulation(
+#Prime
+def is_prime(num):
+ if num <= 1:
+ return False
+ for i in range(2, int(num ** 0.5) + 1):
+ if num % i == 0:
+ return False
+ return True
+def main():
+ num = int(input("Enter a number to check if it's prime: "))
+ if is_prime(num):
+ print(f"{num} is a prime number.")
+ else:
+ print(f"{num} is not a prime number.")
+if __name__ == "__main__":
+ main()
+'''
+#Palindrome
+def is_palindrome(value):
+ value = str(value)
+ return value == value[::-1]
+def main():
+
+ value = input("Enter a string or number to check if it's a palindrome: ")
+
+ if is_palindrome(value):
+ print(f"'{value}' is a palindrome.")
+ else:
+ print(f"'{value}' is not a palindrome.")
+if __name__ == "__main__":
+ main()

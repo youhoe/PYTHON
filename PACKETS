@@ -1,0 +1,58 @@
+# create mymodule.py
+
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    if b != 0:
+        return a / b
+    else:
+        return "Cannot divide by zero"
+
+
+# main.py
+
+import mymodule  # Importing the user-defined module
+
+num1 = 10
+num2 = 5
+
+print("Addition:", mymodule.add(num1, num2))
+print("Subtraction:", mymodule.subtract(num1, num2))
+print("Multiplication:", mymodule.multiply(num1, num2))
+print("Division:", mymodule.divide(num1, num2))
+
+mypackage/
+│── __init__.py
+│── operations.py
+
+
+
+# operations.py
+
+def square(num):
+    return num ** 2
+
+def cube(num):
+    return num ** 3
+
+
+# __init__.py
+
+from .operations import square, cube
+
+
+# main_package.py
+
+import mypackage  # Importing the user-defined package
+
+num = 4
+
+print("Square of", num, ":", mypackage.square(num))
+print("Cube of", num, ":", mypackage.cube(num))

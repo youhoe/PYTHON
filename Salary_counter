@@ -1,0 +1,37 @@
+class Employee:
+    def __init__(self):
+        self.id = ""
+        self.name = ""
+        self.age = 0
+        self.basic = 0
+        self.gross = 0
+        self.dept = ""
+
+def setEmployee():
+    e = Employee()
+    e.id = input("Enter Employee ID: ")  # Keeping ID as a string
+    e.name = input("Enter name: ")
+    e.age = int(input("Enter age: "))
+    e.basic = int(input("Enter basic salary: "))
+    e.dept = input("Enter department name: ")
+    return e  # IMPORTANT: return the created Employee object
+
+def calcEmployee(e):
+    DA = 0.5
+    HRA = 0.3
+    TA = 3500
+
+    e.gross = e.basic + (DA * e.basic) + (HRA * e.basic) + TA
+
+def showEmployee(e):
+    print(f"Employee ID: {e.id}")
+    print(f"Employee Name: {e.name}")
+    print(f"Employee Age: {e.age}")
+    print(f"Basic Salary: {e.basic}")
+    print(f"Gross Salary: {e.gross}")
+
+# Example usage
+if __name__ == "__main__":
+    emp = setEmployee()
+    calcEmployee(emp)
+    showEmployee(emp)

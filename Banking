@@ -1,0 +1,83 @@
+import tkinter as tk
+from tkinter import messagebox
+
+# Database to store account details
+accounts = {}
+
+# Create Account
+def create_account():
+    name = name_entry.get()
+    acc_num = acc_num_entry.get()
+    if name and acc_num and acc_num not in accounts:
+        accounts[acc_num] = {'name': name, 'balance': 0}
+        update_display(f"Account for {name} created successfully!\n")
+    else:
+        update_display("Error: Invalid details or account already exists!\n")
+
+# Deposit Money
+def deposit():
+    acc_num = acc_num_entry.get()
+    amount = amount_entry.get()
+    if acc_num in accounts and amount.isdigit():
+        accounts[acc_num]['balance'] += int(amount)
+        update_display(f"₹{amount} deposited successfully!\n")
+    else:
+        update_display("Error: Invalid account or amount!\n")
+
+# Withdraw Money
+def withdraw():
+    acc_num = acc_num_entry.get()
+    amount = amount_entry.get()
+    if acc_num in accounts and amount.isdigit():
+        amount = int(amount)
+        if accounts[acc_num]['balance'] >= amount:
+            accounts[acc_num]['balance'] -= amount
+            update_display(f"₹{amount} withdrawn successfully!\n")
+        else:
+            update_display("Error: Insufficient balance!\n")
+    else:
+        update_display("Error: Invalid account or amount!\n")
+
+# Check Balance
+def check_balance():
+    acc_num = acc_num_entry.get()
+    if acc_num in accounts:
+        balance = accounts[acc_num]['balance']
+        update_display(f"Available balance: ₹{balance}\n")
+    else:
+        update_display("Error: Invalid account number!\n")
+
+# Update Display Area
+def update_display(message):
+    display_text.insert(tk.END, message + "\n")
+    display_text.yview(tk.END)
+
+# GUI Setup
+root = tk.Tk()
+root.title("Banking System")
+root.geometry("400x500")
+
+# Labels and Entries
+tk.Label(root, text="Name:").pack(pady=5)
+name_entry = tk.Entry(root)
+name_entry.pack(pady=5)
+
+tk.Label(root, text="Account Number:").pack(pady=5)
+acc_num_entry = tk.Entry(root)
+acc_num_entry.pack(pady=5)
+
+tk.Label(root, text="Amount:").pack(pady=5)
+amount_entry = tk.Entry(root)
+amount_entry.pack(pady=5)
+
+# Buttons
+tk.Button(root, text="Create Account", command=create_account).pack(pady=5)
+tk.Button(root, text="Deposit", command=deposit).pack(pady=5)
+tk.Button(root, text="Withdraw", command=withdraw).pack(pady=5)
+tk.Button(root, text="Check Balance", command=check_balance).pack(pady=5)
+
+# Display Area
+display_text = tk.Text(root, height=10, width=50)
+display_text.pack(pady=10)
+
+root.mainloop()

@@ -1,0 +1,80 @@
+class Vehicle:
+    def __init__(self, vt, rp, stock):
+        self.vt = vt  # Vehicle type (e.g., car, bus)
+        self.rp = rp  # Rent per day
+        self.stock = stock  # Available stock of vehicles
+
+    def VA(self):
+        print(f"The available {self.vt} are {self.stock} with rent of Rs.{self.rp} per day.")
+
+class RentalAgencies(Vehicle):
+    def __init__(self, agency, vt, rp, stock):
+        self.agency = agency  # Rental agency name
+        super().__init__(vt, rp, stock)  # Call parent class constructor
+
+    def RentalPeriod(self):
+        p = int(input("Enter the rental period in days: "))
+        return p
+
+class RentalTransaction(RentalAgencies):
+    def __init__(self, agency, vt, rp, stock):
+        super().__init__(agency, vt, rp, stock)
+
+    def pb(self, p1, price, number):
+        # Calculate amount for renting the vehicles
+        amount = p1 * price * number
+        return amount
+
+# Main program
+print("Welcome to the Vehicle Rental System")
+
+nc = 200  # Initial number of cars
+pc = 25   # Price per car per day
+nb = 100  # Initial number of buses
+pb = 50   # Price per bus per day
+d = 0     # Number of vehicles rented
+i = 1
+
+while i <= 20:
+    i += 1
+
+    while True:
+        if i == 25:
+            break
+
+        print("\nPlease enter the choice as per the menu:")
+        print("1: Rent a Car")
+        print("2: Rent a Bus")
+        print("3: Exit")
+
+        choice = int(input("Enter your choice: "))
+
+        if choice == 1:
+            v1 = RentalTransaction("Star", "Car", pc, nc)
+            v1.VA()
+            d = int(input("Enter the number of cars you want to rent: "))
+            if d <= v1.stock:
+                nc -= d  # Update the stock after renting cars
+                p1 = v1.RentalPeriod()  # Get rental period
+                am = v1.pb(p1, pc, d)  # Calculate amount
+                print(f"Your order for {d} cars from {v1.agency} agency is booked. Please pay Rs {am}")
+            else:
+                print("Sorry, not enough cars available!")
+
+        elif choice == 2:
+            v2 = RentalTransaction("Star", "Bus", pb, nb)
+            v2.VA()
+            d = int(input("Enter the number of buses you want to rent: "))
+            if d <= v2.stock:
+                nb -= d  # Update the stock after renting buses
+                p1 = v2.RentalPeriod()  # Get rental period
+                am = v2.pb(p1, pb, d)  # Calculate amount
+                print(f"Your order for {d} buses from {v2.agency} agency is booked. Please pay Rs {am}")
+            else:
+                print("Sorry, not enough buses available!")
+
+        elif choice == 3:
+            print("Thank you for using the Vehicle Rental System. Goodbye!")
+            break
+        else:
+            print("Invalid choice, please try again.")
